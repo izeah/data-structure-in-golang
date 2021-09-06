@@ -92,9 +92,9 @@ func main() {
 
 	// DATA STRUCTURE - STACK
 	s := stack.NewStack()
-	s.Push(14) //tarik
-	s.Push(42) //tarik
-	s.Push(25) //tarik
+	s.Push(14)
+	s.Push(42)
+	s.Push(25)
 	fmt.Println("Stack Peek :", s.Peek())
 	fmt.Println("Stack Size :", s.Size())
 	s.Pop()
@@ -142,12 +142,13 @@ func main() {
 	}
 
 	list.Pop()
+	// print JSON marshalled node
 	fmt.Println(list.Get(5).Print())
 
 	fmt.Println(list.ToString())
 
-	// print linked list
 	fmt.Println(list.IsEmpty())
 	list.Delete(1)
+	// print linked list to string
 	fmt.Println(list.ToString())
 }

@@ -5,29 +5,29 @@ import (
 	"strings"
 )
 
-// Slice of string as a new data type
+// Slice of string as a new data type.
 type arrOfStr []string
 
-// func of mapCallback as a new data type
+// func of mapCallback as a new data type.
 type mapCallbackFn func(value string) string
 
-// func of forEachCallback as a new data type
+// func of forEachCallback as a new data type.
 type forEachCallbackFn func(value string)
 
-// func of filterCallback as a new data type
+// func of filterCallback as a new data type.
 type filterCallbackFn func(value string) bool
 
-// Creates a new array of string
+// Creates a new array of string.
 func NewArrayOfString() arrOfStr {
 	return arrOfStr{}
 }
 
-// Get all elements of the array
+// Get all elements of the array.
 func (a arrOfStr) GetAll() arrOfStr {
 	return a
 }
 
-// Get all reversed elements of the array
+// Get all reversed elements of the array.
 func (a arrOfStr) GetAllReversed() arrOfStr {
 	var newArr arrOfStr
 	for i := len(a) - 1; i >= 0; i-- {
@@ -37,7 +37,7 @@ func (a arrOfStr) GetAllReversed() arrOfStr {
 	return newArr
 }
 
-// Get one item of the array
+// Get one item of the array.
 func (a arrOfStr) GetOne(index int) string {
 	if index < 0 || index >= len(a) {
 		return ""
@@ -46,7 +46,7 @@ func (a arrOfStr) GetOne(index int) string {
 	return a[index]
 }
 
-// Update one item of the array
+// Update one item of the array.
 func (a *arrOfStr) UpdateOne(index int, newStr string) error {
 	if index < 0 || index >= len(*a) {
 		return errors.New("data tidak ditemukan")
@@ -56,7 +56,7 @@ func (a *arrOfStr) UpdateOne(index int, newStr string) error {
 	return nil
 }
 
-// Delete one item of the array
+// Delete one item of the array.
 func (a *arrOfStr) DeleteOne(index int) error {
 	if index < 0 || index >= len(*a) {
 		return errors.New("data tidak ditemukan")
@@ -72,7 +72,7 @@ func (a *arrOfStr) Append(elems ...string) int {
 	return len(*a)
 }
 
-// Inserts new elements at the start of an array, and "unshifts" older elements
+// Inserts new elements at the start of an array, and "unshifts" older elements.
 // Returns the new length of the array.
 func (a *arrOfStr) Prepend(elems ...string) int {
 	var revArr arrOfStr
@@ -97,7 +97,7 @@ func (a *arrOfStr) Pop() string {
 
 // Shifting is equivalent to popping, working on the first element instead of the last.
 // Removes the first array element and "shifts" all other elements to a lower index.
-// Returns the value that was "shifted out":
+// Returns the value that was "shifted out".
 func (a *arrOfStr) Shift() string {
 	if len(*a) > 0 {
 		shifted := (*a)[0]
@@ -134,7 +134,7 @@ func (a *arrOfStr) Map(callbackFn mapCallbackFn) arrOfStr {
 	return newArr
 }
 
-// Calls a function (a callback function) once for each array element.
+// Performs the specified action for each element in an array.
 func (a *arrOfStr) ForEach(callbackFn forEachCallbackFn) {
 	for _, v := range *a {
 		callbackFn(v)
@@ -164,7 +164,6 @@ func (a *arrOfStr) Find(callbackFn filterCallbackFn) string {
 	return ""
 }
 
-// The element to search for.
 // Determines whether an array includes a certain element, returning true or false as appropriate.
 func (a *arrOfStr) Includes(findStr string) bool {
 	for _, v := range *a {
@@ -176,7 +175,7 @@ func (a *arrOfStr) Includes(findStr string) bool {
 	return false
 }
 
-// Converts an array to a string of (comma separated) array values.
+// Converts an array to a joined string of array values with comma separated.
 func (a *arrOfStr) ToString() string {
 	return strings.Join(*a, ",")
 }

@@ -5,25 +5,25 @@ import (
 	"strings"
 )
 
-// List struct which has the information of the node
+// List struct which has the information of the node.
 type list struct {
 	head   *node
 	tail   *node
 	length int
 }
 
-// Create new linked list
+// Create new linked list.
 func NewLinkedList() *list {
 	return &list{}
 }
 
-// Node struct which has the information to the next one
+// Node struct which has the information to the next one.
 type node struct {
 	value int
 	next  *node
 }
 
-// Create new instance of node
+// Create new instance of node.
 func NewNode(value int) *node {
 	return &node{
 		value: value,
@@ -45,7 +45,7 @@ func doPrint(n *node) string {
 	return nested
 }
 
-// Custom JSON Marshalling
+// Custom node JSON marshalling.
 func (n *node) Print() string {
 	if n == nil {
 		return "{}"
@@ -54,7 +54,7 @@ func (n *node) Print() string {
 	return doPrint(n)
 }
 
-// returns pushed node
+// returns pushed node.
 func (l *list) Push(value int) *node {
 	var node = NewNode(value)
 
@@ -74,7 +74,7 @@ func (l *list) Push(value int) *node {
 	}
 }
 
-// returns popped node
+// returns popped node.
 func (l *list) Pop() *node {
 	// if linkedlist empty
 	if l.IsEmpty() {
@@ -111,7 +111,7 @@ func (l *list) Pop() *node {
 	return poppedNode
 }
 
-// returns indexed node
+// returns node with given index.
 func (l *list) Get(index int) *node {
 	// if linkedlist empty
 	if index < 0 || index >= l.length {
@@ -135,7 +135,7 @@ func (l *list) Get(index int) *node {
 	return current
 }
 
-// returns deleted node
+// returns deleted node with given index.
 func (l *list) Delete(index int) *node {
 	// if linkedlist empty
 	if index < 0 || index >= l.length {
@@ -169,10 +169,12 @@ func (l *list) Delete(index int) *node {
 	return deletedNode
 }
 
+// Determines whether linked list has nodes.
 func (l *list) IsEmpty() bool {
 	return l.length == 0
 }
 
+// Converts linked list to string with "=>" separated.
 func (l *list) ToString() string {
 	var values []string
 	var current = l.head
