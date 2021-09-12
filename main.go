@@ -59,7 +59,11 @@ func main() {
 
 	var txt string
 	arrNames.ForEach(func(value string) {
-		txt += value + " => "
+		if value == arrNames[len(arrNames)-1] {
+			txt += value
+		} else {
+			txt += value + " => "
+		}
 	})
 
 	fmt.Println(txt)
