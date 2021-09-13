@@ -145,6 +145,7 @@ func main() {
 		list.Push(i)
 	}
 
+	fmt.Println(list.PushAt(11, 9))
 	list.Pop()
 	// print JSON marshalled node
 	fmt.Println(list.Get(5).Print())
@@ -152,6 +153,7 @@ func main() {
 	fmt.Println(list.ToString())
 
 	fmt.Println(list.IsEmpty())
+	fmt.Println("Size of linked list :", list.Size())
 	list.Delete(1)
 	// print linked list to string
 	fmt.Println(list.ToString())

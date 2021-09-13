@@ -54,7 +54,8 @@ func (n *node) Print() string {
 	return doPrint(n)
 }
 
-// returns pushed node.
+// inserts node at the end of linked list.
+// returns inserted node.
 func (l *list) Push(value int) *node {
 	var node = NewNode(value)
 
@@ -74,6 +75,7 @@ func (l *list) Push(value int) *node {
 	}
 }
 
+// removes node at the end of linked list.
 // returns popped node.
 func (l *list) Pop() *node {
 	// if linkedlist empty
@@ -111,19 +113,66 @@ func (l *list) Pop() *node {
 	return poppedNode
 }
 
-// returns node with given index.
-func (l *list) Get(index int) *node {
-	// if linkedlist empty
-	if index < 0 || index >= l.length {
+// inserts node at given position index of linked list
+// returns inserted node.
+func (l *list) PushAt(value int, index int) *node {
+	if index < 0 || index > l.length {
 		return nil
 	}
 
+	// create new Node
+	var insertedNode = NewNode(value)
+
+	var current = l.head
+	var prev *node
+
 	// if linkedlist have 1 node
+	if index == 0 {
+		if l.head == nil {
+			l.tail = insertedNode
+		}
+
+		insertedNode.next = l.head
+		l.head = insertedNode
+		l.length += 1
+
+		return insertedNode
+	}
+
+	// if linkedlist have more than 1 node
+	// iterates over the linked list to find
+	// the position to insert
+	var i int
+
+	for i < index {
+		prev = current
+		current = current.next
+		i += 1
+	}
+
+	// adding node to linked list
+	insertedNode.next = current
+	prev.next = insertedNode
+	l.length += 1
+
+	if i == l.length-1 {
+		l.tail = insertedNode
+	}
+
+	return insertedNode
+}
+
+// returns node with given index.
+func (l *list) Get(index int) *node {
+	if index < 0 || index > l.length {
+		return nil
+	}
+
 	if index == 0 {
 		return l.head
 	}
 
-	// if linkedlist have more than 1 node
+	// if given index is greater than 0
 	var current = l.head
 	var i int
 
@@ -137,12 +186,10 @@ func (l *list) Get(index int) *node {
 
 // returns deleted node with given index.
 func (l *list) Delete(index int) *node {
-	// if linkedlist empty
-	if index < 0 || index >= l.length {
+	if index < 0 || index > l.length {
 		return nil
 	}
 
-	// if linkedlist have 1 node
 	if index == 0 {
 		var deletedNode = l.head
 		l.head = l.head.next
@@ -151,7 +198,7 @@ func (l *list) Delete(index int) *node {
 		return deletedNode
 	}
 
-	// if linkedlist have more than 1 node
+	// if given index is greater than 0
 	var current = l.head
 	var prev *node
 	var i int
@@ -172,6 +219,10 @@ func (l *list) Delete(index int) *node {
 // Determines whether linked list has nodes.
 func (l *list) IsEmpty() bool {
 	return l.length == 0
+}
+
+func (l *list) Size() int {
+	return l.length
 }
 
 // Converts linked list to string with "=>" separated.
