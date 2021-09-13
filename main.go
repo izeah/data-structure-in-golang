@@ -140,7 +140,7 @@ func main() {
 	fmt.Println("=================================================")
 
 	// Create a list of 5 nodes
-	list := linkedlist.NewLinkedList()
+	list := linkedlist.NewSinglyLinkedList()
 	for i := 1; i <= 10; i++ {
 		list.Push(i)
 	}

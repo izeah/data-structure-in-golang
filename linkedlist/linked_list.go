@@ -6,15 +6,15 @@ import (
 )
 
 // List struct which has the information of the node.
-type list struct {
+type singlyLinkedList struct {
 	head   *node
 	tail   *node
 	length int
 }
 
 // Create new linked list.
-func NewLinkedList() *list {
-	return &list{}
+func NewSinglyLinkedList() *singlyLinkedList {
+	return &singlyLinkedList{}
 }
 
 // Node struct which has the information to the next one.
@@ -56,7 +56,7 @@ func (n *node) Print() string {
 
 // inserts node at the end of linked list.
 // returns inserted node.
-func (l *list) Push(value int) *node {
+func (l *singlyLinkedList) Push(value int) *node {
 	var node = NewNode(value)
 
 	// if linkedlist empty
@@ -77,7 +77,7 @@ func (l *list) Push(value int) *node {
 
 // removes node at the end of linked list.
 // returns popped node.
-func (l *list) Pop() *node {
+func (l *singlyLinkedList) Pop() *node {
 	// if linkedlist empty
 	if l.IsEmpty() {
 		return nil
@@ -115,7 +115,7 @@ func (l *list) Pop() *node {
 
 // inserts node at given position index of linked list
 // returns inserted node.
-func (l *list) PushAt(value int, index int) *node {
+func (l *singlyLinkedList) PushAt(value int, index int) *node {
 	if index < 0 || index > l.length {
 		return nil
 	}
@@ -163,7 +163,7 @@ func (l *list) PushAt(value int, index int) *node {
 }
 
 // returns node with given index.
-func (l *list) Get(index int) *node {
+func (l *singlyLinkedList) Get(index int) *node {
 	if index < 0 || index > l.length {
 		return nil
 	}
@@ -185,7 +185,7 @@ func (l *list) Get(index int) *node {
 }
 
 // returns deleted node with given index.
-func (l *list) Delete(index int) *node {
+func (l *singlyLinkedList) Delete(index int) *node {
 	if index < 0 || index > l.length {
 		return nil
 	}
@@ -217,16 +217,16 @@ func (l *list) Delete(index int) *node {
 }
 
 // Determines whether linked list has nodes.
-func (l *list) IsEmpty() bool {
+func (l *singlyLinkedList) IsEmpty() bool {
 	return l.length == 0
 }
 
-func (l *list) Size() int {
+func (l *singlyLinkedList) Size() int {
 	return l.length
 }
 
 // Converts linked list to string with "=>" separated.
-func (l *list) ToString() string {
+func (l *singlyLinkedList) ToString() string {
 	var values []string
 	var current = l.head
 
