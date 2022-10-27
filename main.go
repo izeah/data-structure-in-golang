@@ -2,11 +2,14 @@ package main
 
 import (
 	"data-structure-in-golang/array"
-	"data-structure-in-golang/linkedlist"
+	"data-structure-in-golang/linkedlist/doubly"
+	"data-structure-in-golang/linkedlist/singly"
 	"data-structure-in-golang/queue"
 	"data-structure-in-golang/stack"
 	"fmt"
 	"strings"
+
+	customLinkedList "github.com/pergibahasa/linkedlist"
 )
 
 func add(a, b int) int {
@@ -136,25 +139,47 @@ func main() {
 	fmt.Println("Dequeued element :", q.Dequeue())
 	fmt.Println("Size Queue :", q.Size())
 
-	fmt.Println("\n\nDATA STRUCTURE - LINKED LIST")
+	fmt.Println("\n\nDATA STRUCTURE - SINGLY LINKED LIST")
 	fmt.Println("=================================================")
 
-	// Create a list of 5 nodes
-	list := linkedlist.NewSinglyLinkedList()
+	// Create a singly linked list of 5 nodes
+	singlyLinkedList := singly.New()
 	for i := 1; i <= 10; i++ {
-		list.Push(i)
+		singlyLinkedList.Push(i)
 	}
 
-	fmt.Println(list.PushAt(11, 9))
-	list.Pop()
+	fmt.Println(singlyLinkedList.PushAt(11, 9))
+	singlyLinkedList.Pop()
 	// print JSON marshalled node
-	fmt.Println(list.Get(5).Print())
+	fmt.Println(singlyLinkedList.Get(5).Print())
 
-	fmt.Println(list.ToString())
+	fmt.Println(singlyLinkedList)
 
-	fmt.Println(list.IsEmpty())
-	fmt.Println("Size of linked list :", list.Size())
-	list.Delete(1)
-	// print linked list to string
-	fmt.Println(list.ToString())
+	fmt.Println(singlyLinkedList.IsEmpty())
+	fmt.Println("Size of linked singlyLinkedList :", singlyLinkedList.Size())
+	singlyLinkedList.Delete(1)
+	// print linked singly linked list to string
+	fmt.Println(singlyLinkedList)
+
+	fmt.Println("\n\nDATA STRUCTURE - DOUBLY LINKED LIST")
+	fmt.Println("=================================================")
+
+	// Create a doubly linked list of 5 nodes
+	doublyLinkedList := doubly.New()
+	for i := 1; i <= 10; i++ {
+		doublyLinkedList.Push(i)
+	}
+
+	fmt.Println(doublyLinkedList)
+
+	fmt.Println("\n\nDATA STRUCTURE - GENERICS LINKED LIST")
+	fmt.Println("=================================================")
+
+	// Create a generic linked list
+	genericLinkedList := customLinkedList.NewLinkedList[string]()
+	for i := 0; i < 5; i++ {
+		genericLinkedList.Add(string(rune(65 + i)))
+	}
+
+	fmt.Println(genericLinkedList)
 }

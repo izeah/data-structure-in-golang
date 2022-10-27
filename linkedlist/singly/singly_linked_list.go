@@ -1,20 +1,15 @@
-package linkedlist
+package singly
 
 import (
 	"fmt"
 	"strings"
 )
 
-// List struct which has the information of the node.
-type singlyLinkedList struct {
+// Singly Linked List struct which has the information of the node.
+type list struct {
 	head   *node
 	tail   *node
 	length int
-}
-
-// Create new linked list.
-func NewSinglyLinkedList() *singlyLinkedList {
-	return &singlyLinkedList{}
 }
 
 // Node struct which has the information to the next one.
@@ -23,8 +18,13 @@ type node struct {
 	next  *node
 }
 
+// Create new instance of singly linked list.
+func New() *list {
+	return &list{}
+}
+
 // Create new instance of node.
-func NewNode(value int) *node {
+func newNode(value int) *node {
 	return &node{
 		value: value,
 	}
@@ -54,10 +54,10 @@ func (n *node) Print() string {
 	return doPrint(n)
 }
 
-// inserts node at the end of linked list.
+// inserts node at the end of singly linked list.
 // returns inserted node.
-func (l *singlyLinkedList) Push(value int) *node {
-	var node = NewNode(value)
+func (l *list) Push(value int) *node {
+	var node = newNode(value)
 
 	// if linkedlist empty
 	if l.head == nil {
@@ -75,9 +75,9 @@ func (l *singlyLinkedList) Push(value int) *node {
 	}
 }
 
-// removes node at the end of linked list.
+// removes node at the end of singly linked list.
 // returns popped node.
-func (l *singlyLinkedList) Pop() *node {
+func (l *list) Pop() *node {
 	// if linkedlist empty
 	if l.IsEmpty() {
 		return nil
@@ -113,15 +113,15 @@ func (l *singlyLinkedList) Pop() *node {
 	return poppedNode
 }
 
-// inserts node at given position index of linked list
+// inserts node at given position index of singly linked list
 // returns inserted node.
-func (l *singlyLinkedList) PushAt(value int, index int) *node {
+func (l *list) PushAt(value int, index int) *node {
 	if index < 0 || index > l.length {
 		return nil
 	}
 
 	// create new Node
-	var insertedNode = NewNode(value)
+	var insertedNode = newNode(value)
 
 	var current = l.head
 	var prev *node
@@ -163,7 +163,7 @@ func (l *singlyLinkedList) PushAt(value int, index int) *node {
 }
 
 // returns node with given index.
-func (l *singlyLinkedList) Get(index int) *node {
+func (l *list) Get(index int) *node {
 	if index < 0 || index > l.length {
 		return nil
 	}
@@ -185,7 +185,7 @@ func (l *singlyLinkedList) Get(index int) *node {
 }
 
 // returns deleted node with given index.
-func (l *singlyLinkedList) Delete(index int) *node {
+func (l *list) Delete(index int) *node {
 	if index < 0 || index > l.length {
 		return nil
 	}
@@ -216,17 +216,18 @@ func (l *singlyLinkedList) Delete(index int) *node {
 	return deletedNode
 }
 
-// Determines whether linked list has nodes.
-func (l *singlyLinkedList) IsEmpty() bool {
+// Determines whether singly linked list has nodes.
+func (l *list) IsEmpty() bool {
 	return l.length == 0
 }
 
-func (l *singlyLinkedList) Size() int {
+// Returns size of singly linked list.
+func (l *list) Size() int {
 	return l.length
 }
 
-// Converts linked list to string with "=>" separated.
-func (l *singlyLinkedList) ToString() string {
+// Converts singly linked list to string with "=>" separated.
+func (l *list) String() string {
 	var values []string
 	var current = l.head
 
